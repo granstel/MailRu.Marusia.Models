@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>GranSteL</Authors>
     <Description>Models for Marusia from Mail.ru</Description>
-    <PackageProjectUrl>https://github.com/granstel/MailRu.Marusia.Models</PackageProjectUrl>
+    <PackageProjectUrl>https://vk.com/dev/marusia_skill_docs</PackageProjectUrl>
     <RepositoryUrl>https://github.com/granstel/MailRu.Marusia.Models</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
     <PackageTags>Marusia, Mail.ru, Dialogs, Models</PackageTags>
