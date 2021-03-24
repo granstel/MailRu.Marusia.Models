@@ -7,5 +7,10 @@ namespace MailRu.Marusia.Models
     public class Application
     {
         public string ApplicationId { get; set; }
+
+        /// <summary>
+        /// Recommend to get values from <see cref="ApplicationTypes"/>
+        /// </summary>
+        public string ApplicationType { get; set; }
     }
 }
