@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using MailRu.Marusia.Models.Interfaces;
 
 namespace MailRu.Marusia.Models
 {
@@ -12,10 +11,8 @@ namespace MailRu.Marusia.Models
         public Session Session { get; set; }
 
         public State SessionState { get; set; }
-        
+
         public State UserStateUpdate { get; set; }
-        
-        public State ApplicationState { get; set; }
 
         public string Version { get; set; }
 
@@ -37,16 +34,6 @@ namespace MailRu.Marusia.Models
             }
 
             UserStateUpdate.Add(key, value);
-        }
-
-        public void AddToApplicationState(string key, object value)
-        {
-            if (ApplicationState == null)
-            {
-                ApplicationState = new State();
-            }
-
-            ApplicationState.Add(key, value);
         }
     }
 }

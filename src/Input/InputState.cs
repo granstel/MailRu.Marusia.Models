@@ -9,7 +9,5 @@ namespace MailRu.Marusia.Models.Input
         public State Session { get; set; }
 
         public State User { get; set; }
-        
-        public State Application { get; set; }
     }
 }
