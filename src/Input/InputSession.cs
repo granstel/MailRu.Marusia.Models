@@ -9,7 +9,5 @@ namespace MailRu.Marusia.Models.Input
         public bool New { get; set; }
 
         public string SkillId { get; set; }
-
-        public Location Location { get; set; }
     }
 }

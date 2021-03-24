@@ -17,17 +17,5 @@ namespace MailRu.Marusia.Models
         public bool EndSession { get; set; }
         
         public ICard Card { get; set; }
-
-        public Directives Directives { get; set; }
-
-        public void InitRequestGeolocation()
-        {
-            if (Directives == null)
-            {
-                Directives = new Directives();
-            }
-
-            Directives.InitRequestGeolocation();
-        }
     }
 }

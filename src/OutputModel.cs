@@ -9,8 +9,6 @@ namespace MailRu.Marusia.Models
     {
         public Response Response { get; set; }
 
-        public AccountLinking StartAccountLinking { get; set; }
-
         public Session Session { get; set; }
 
         public State SessionState { get; set; }
@@ -49,16 +47,6 @@ namespace MailRu.Marusia.Models
             }
 
             ApplicationState.Add(key, value);
-        }
-
-        public void RequestAccountLinking()
-        {
-            StartAccountLinking = new AccountLinking();
-        }
-
-        public void InitRequestGeolocation()
-        {
-            Response?.InitRequestGeolocation();
         }
     }
 }
