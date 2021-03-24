@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Language>C#</Language>
     <Title>MailRu.Marusia.Models</Title>
-    <Version>1.0.0</Version>
-    <PackageReleaseNotes>Models for Marusia from Mail.ru</PackageReleaseNotes>
+    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Add application types</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
