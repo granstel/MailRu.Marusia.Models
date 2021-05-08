@@ -14,5 +14,6 @@ namespace MailRu.Marusia.Models.Cards
         public string Description { get; set; }
 
         public CardButton Button { get; set; }
+        public int ImageId { get; set; }
     }
 }
