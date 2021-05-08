@@ -10,6 +10,8 @@ namespace MailRu.Marusia.Models.Cards
 
         ItemsList,
 
-        MiniApp
+        MiniApp,
+
+        Link
     }
 }
