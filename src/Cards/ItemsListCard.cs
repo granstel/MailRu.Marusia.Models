@@ -8,8 +8,6 @@ namespace MailRu.Marusia.Models.Cards
     {
         public CardType Type => CardType.ItemsList;
 
-        public Header Header { get; set; }
-
         public CardItem[] Items { get; set; }
     }
 }
