@@ -8,6 +8,8 @@ namespace MailRu.Marusia.Models.Cards
     {
         BigImage,
 
-        ItemsList
+        ItemsList,
+
+        MiniApp
     }
 }
