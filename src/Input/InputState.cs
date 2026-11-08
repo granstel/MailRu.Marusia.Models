@@ -1,13 +1,13 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace MailRu.Marusia.Models.Input
 {
-    [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     public class InputState
     {
+        [JsonPropertyName("session")]
         public State Session { get; set; }
 
+        [JsonPropertyName("user")]
         public State User { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -10,17 +10,19 @@
     <RepositoryType>Github</RepositoryType>
     <PackageTags>Marusia, Mail.ru, Dialogs, Models</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <Language>C#</Language>
     <Title>MailRu.Marusia.Models</Title>
-    <Version>1.1.0</Version>
-    <PackageReleaseNotes>Add MiniApp and Link cards</PackageReleaseNotes>
+    <Version>2.0.0</Version>
+    <PackageReleaseNotes>Migrate JSON contracts to System.Text.Json</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
+    <PackageReference Include="System.Text.Json" Version="10.0.14" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\README.md" Pack="True" PackagePath="/" />
     <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>

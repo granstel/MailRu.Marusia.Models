@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using System.Text.Json.Nodes;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using MailRu.Marusia.Models.Buttons;
 using MailRu.Marusia.Models.Cards;
 using MailRu.Marusia.Models.Input;
@@ -180,7 +180,7 @@ public class JsonContractTests
     {
         public CardType Type => CardType.Link;
 
-        [JsonProperty("customField")]
+        [JsonPropertyName("customField")]
         public string CustomField => "custom";
     }
 

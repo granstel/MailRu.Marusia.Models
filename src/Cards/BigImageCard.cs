@@ -1,11 +1,10 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace MailRu.Marusia.Models.Cards
 {
-    [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     public class BigImageCard : CardItem, ICard
     {
+        [JsonPropertyName("type")]
         public CardType Type => CardType.BigImage;
     }
 }

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace MailRu.Marusia.Models
 {
+    [JsonConverter(typeof(StateJsonConverter))]
     public class State : Dictionary<string, object>
     {
         public bool TryGetValue<T>(string key, out T result)
