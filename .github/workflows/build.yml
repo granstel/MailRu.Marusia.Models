@@ -37,13 +37,9 @@ jobs:
           RELEASE_TAG: ${{ github.event.release.tag_name }}
         run: |
           if [[ "$GITHUB_EVENT_NAME" == release ]]; then
-            version="${RELEASE_TAG#v}"
-            number='(0|[1-9][0-9]*)'
-            prerelease="($number|[0-9]*[A-Za-z-][0-9A-Za-z-]*)"
-            metadata='[0-9A-Za-z-]+'
-            semver="^$number\.$number\.$number(-$prerelease(\.$prerelease)*)?(\+$metadata(\.$metadata)*)?$"
-            if [[ ! "$version" =~ $semver ]]; then
-              echo 'Release tag must be SemVer, optionally prefixed with v.' >&2
+            version="$RELEASE_TAG"
+            if [[ ! "$version" =~ ^(0|[1-9][0-9]*)[.](0|[1-9][0-9]*)[.](0|[1-9][0-9]*)$ ]]; then
+              echo '::error::Release tag must be MAJOR.MINOR.PATCH (for example, 2.1.0).'
               exit 1
             fi
           else
