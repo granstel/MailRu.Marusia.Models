@@ -22,3 +22,12 @@ Development
 From the repository root, run `dotnet test --solution MailRu.Marusia.Models.slnx -c Release` with the SDK pinned in `global.json`.
 
 Create a package with `dotnet pack src/MailRu.Marusia.Models.csproj -c Release`.
+
+Releasing
+---------
+
+Publish a GitHub Release from a new SemVer tag. The workflow tests the tagged commit and publishes one package to NuGet.org, GitHub Packages, and the GitHub Release. If a publish job fails, use **Re-run failed jobs** to reuse the tested package.
+
+In the GitHub environment named `nuget`, set the `NUGET_USER` secret to the NuGet.org publisher profile name. In NuGet.org Trusted Publishing, use owner `granstel`, repository `MailRu.Marusia.Models`, workflow `release.yml`, and environment `nuget` for package `MailRu.Marusia.Models`.
+
+GitHub Packages uses `GITHUB_TOKEN` and the package's repository link. If the package does not inherit repository access, grant this repository write access under **Manage Actions access**.
