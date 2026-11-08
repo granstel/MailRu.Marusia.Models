@@ -1,11 +1,10 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace MailRu.Marusia.Models
 {
-    [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     public class User
     {
+        [JsonPropertyName("user_id")]
         public string UserId { get; set; }
     }
 }

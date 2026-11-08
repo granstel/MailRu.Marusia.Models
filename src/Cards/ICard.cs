@@ -1,9 +1,8 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace MailRu.Marusia.Models.Cards
 {
-    [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
+    [JsonConverter(typeof(CardJsonConverter))]
     public interface ICard
     {
         CardType Type { get; }

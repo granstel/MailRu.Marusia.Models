@@ -1,13 +1,13 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace MailRu.Marusia.Models.Interfaces
 {
-    [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     public class InterfacesModel
     {
+        [JsonPropertyName("screen")]
         public Screen Screen { get; set; }
 
+        [JsonPropertyName("payments")]
         public Payments Payments { get; set; }
     }
 }

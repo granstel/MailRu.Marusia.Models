@@ -1,14 +1,13 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace MailRu.Marusia.Models
 {
-    [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
-
     public class Token
     {
+        [JsonPropertyName("start")]
         public int Start { get; set; }
 
+        [JsonPropertyName("end")]
         public int End { get; set; }
     }
 }
