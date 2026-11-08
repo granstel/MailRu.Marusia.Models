@@ -47,10 +47,10 @@ jobs:
         env:
           PACKAGE_VERSION: ${{ steps.version.outputs.value }}
         run: |
-          dotnet restore MailRu.Marusia.Models.slnx -p:NuGetAuditMode=all
-          dotnet build MailRu.Marusia.Models.slnx -c Release --no-restore \
+          dotnet restore -p:NuGetAuditMode=all
+          dotnet build -c Release --no-restore \
             -p:ContinuousIntegrationBuild=true -p:Version="$PACKAGE_VERSION"
-          dotnet test --solution MailRu.Marusia.Models.slnx -c Release --no-build
+          dotnet test -c Release --no-build
       - name: Pack the library
         if: steps.retained-package.outcome != 'success'
         env:
