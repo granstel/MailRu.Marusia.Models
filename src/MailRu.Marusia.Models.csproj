@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>GranSteL</Authors>
     <Description>Models for Marusia from Mail.ru</Description>
     <PackageProjectUrl>https://vk.com/dev/marusia_skill_docs</PackageProjectUrl>

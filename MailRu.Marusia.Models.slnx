@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/MailRu.Marusia.Models.csproj" />
+  <Project Path="tests/MailRu.Marusia.Models.Tests.csproj" />
+</Solution>

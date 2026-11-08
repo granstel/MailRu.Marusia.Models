@@ -15,3 +15,10 @@ Use `System.Text.Json.JsonSerializer` to read `InputModel` and write `OutputMode
 Read scalar state values with `TryGetFromSessionState<T>` or `TryGetFromUserState<T>`. JSON integers become `long` (or `BigInteger` outside its range) and fractional numbers become `double`. Untyped JSON objects and arrays in state, entity values, and button payloads are exposed as `JsonElement`.
 
 Use the protocol casing when reading JSON. To accept different casing for model fields, set `JsonSerializerOptions.PropertyNameCaseInsensitive`.
+
+Development
+-----------
+
+From the repository root, run `dotnet test MailRu.Marusia.Models.slnx -c Release` with the SDK pinned in `global.json`.
+
+Create a package with `dotnet pack src/MailRu.Marusia.Models.csproj -c Release`.
