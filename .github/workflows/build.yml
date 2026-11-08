@@ -4,6 +4,7 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_call:
 
 permissions:
   contents: read
@@ -14,18 +15,56 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ github.sha }}
           persist-credentials: false
       - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
         with:
           global-json-file: global.json
-      - name: Build the NuGet package
-        run: dotnet pack src/MailRu.Marusia.Models.csproj -c Release -p:GeneratePackageOnBuild=false -p:ContinuousIntegrationBuild=true -o "$RUNNER_TEMP/feed"
+      - name: Resolve package version
+        id: version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == release ]]; then
+            version="${RELEASE_TAG#v}"
+            number='(0|[1-9][0-9]*)'
+            prerelease="($number|[0-9]*[A-Za-z-][0-9A-Za-z-]*)"
+            metadata='[0-9A-Za-z-]+'
+            semver="^$number\.$number\.$number(-$prerelease(\.$prerelease)*)?(\+$metadata(\.$metadata)*)?$"
+            if [[ ! "$version" =~ $semver ]]; then
+              echo 'Release tag must be SemVer, optionally prefixed with v.' >&2
+              exit 1
+            fi
+          else
+            version=$(dotnet msbuild src/MailRu.Marusia.Models.csproj -getProperty:Version)
+          fi
+          printf 'value=%s\n' "$version" >> "$GITHUB_OUTPUT"
+      - name: Build and test the solution
+        env:
+          PACKAGE_VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          dotnet restore MailRu.Marusia.Models.slnx -p:NuGetAuditMode=all
+          dotnet build MailRu.Marusia.Models.slnx -c Release --no-restore \
+            -p:ContinuousIntegrationBuild=true -p:Version="$PACKAGE_VERSION"
+          dotnet test --solution MailRu.Marusia.Models.slnx -c Release --no-build
+      - name: Pack the library
+        env:
+          PACKAGE_VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          dotnet pack src/MailRu.Marusia.Models.csproj -c Release --no-build \
+            -p:ContinuousIntegrationBuild=true -p:Version="$PACKAGE_VERSION" -o "$RUNNER_TEMP/feed"
       - name: Test the package on .NET 10
+        env:
+          PackageVersionUnderTest: ${{ steps.version.outputs.value }}
         run: |
           export MARUSIA_PACKAGE_TEST_FEED="$RUNNER_TEMP/feed"
           export NUGET_PACKAGES="$RUNNER_TEMP/package-test-cache"
-          version=$(dotnet msbuild src/MailRu.Marusia.Models.csproj -getProperty:Version)
           dotnet restore tests/MailRu.Marusia.Models.Tests.csproj \
-            -p:PackageVersionUnderTest="$version" --configfile tests/PackageTest.NuGet.Config
-          dotnet test tests/MailRu.Marusia.Models.Tests.csproj -c Release --no-restore \
-            -p:PackageVersionUnderTest="$version"
+            -p:NuGetAuditMode=all --configfile tests/PackageTest.NuGet.Config
+          dotnet test --project tests/MailRu.Marusia.Models.Tests.csproj -c Release --no-restore
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: nuget-package
+          path: ${{ runner.temp }}/feed/*.nupkg
+          if-no-files-found: error
+          overwrite: true

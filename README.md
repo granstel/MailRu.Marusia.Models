@@ -19,6 +19,6 @@ Use the protocol casing when reading JSON. To accept different casing for model 
 Development
 -----------
 
-From the repository root, run `dotnet test MailRu.Marusia.Models.slnx -c Release` with the SDK pinned in `global.json`.
+From the repository root, run `dotnet test --solution MailRu.Marusia.Models.slnx -c Release` with the SDK pinned in `global.json`.
 
 Create a package with `dotnet pack src/MailRu.Marusia.Models.csproj -c Release`.
